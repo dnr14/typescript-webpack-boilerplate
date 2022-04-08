@@ -1,0 +1,101 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb-typescript",
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    // 리액트 17v이상 부터 import react 생략 가능합니다.
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "modules": true,
+      "jsx": true
+    },
+    "sourceType": "module",
+    "ecmaVersion": 2015,
+    "requireConfigFile": false,
+    "project": ["./tsconfig.json"]
+  },
+  "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/forbid-prop-types": "off",
+    "linebreak-style": "off",
+    "import/no-dynamic-require": "off",
+    "global-require": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-empty-pattern": "off",
+    "no-alert": "off",
+    "prettier/prettier": "off",
+    // onclick 이벤트를 쓰는 요소에는 키보드 이벤트가 있어야된다는 규칙
+    "jsx-a11y/click-events-have-key-events": "off",
+    // 삼항연산자 규칙
+    "no-unneeded-ternary": "off",
+    //비대화형 HTML 요소에 이벤트 허용 x
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    // key 배열 idx 못쓰는 규칙 해제
+    "react/no-array-index-key": "off",
+    "no-undef": "off",
+    "jsx-a11y/no-autofocus": "off",
+    "jsx-a11y/accessible-emoji": "off",
+    // 확장자로 js와 jsx 둘다 허용하도록 수정
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    // console 룰
+    "no-console": "warn",
+    // hooks의 의존성배열이 충분하지 않을때 강제로 의존성을 추가하는 규칙을 완화
+    // export const 문을 쓸때 에러를 내는 규칙 해제
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    // 다른 함수 안에서 호출은 가능하도록 해제
+    // 함수 평가전에 호출 금지 규칙
+    "no-shadow": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "no-param-reassign": "off",
+    "react/function-component-definition": ["off", "arrow-function"],
+
+    // prettier는 더블 쿼테이션을 원하는데 eslint는 jsx props로 넘기는 값을 싱글 쿼테이션을 원한다.
+    // prettier와 eslint가 충돌이 일어나는거 같으니 jsx-quotes옵션을 일단 껏다.
+    "jsx-quotes": ["off"],
+
+    // useEeffect 안에 state 변수를 쓴다면 dependency array에 넣어줘야되는 룰
+    "react-hooks/exhaustive-deps": "warn",
+    "react/no-unused-prop-types": "warn",
+
+    // 중첩 삼항 연산자 허용
+    "no-nested-ternary": "off",
+
+    // 사용하지 않는 변수가 있을때 경고를 주지만 tpyescript의 interface도 경고를 줘서
+    // eslint no-unused-vars는 꺼줘야된다.
+    // @typescrip/no-unused-vars가 interface를 제외한 나머지 사용하지 않는 변수를 경고준다.
+    "no-unused-vars": "off",
+
+    "spaced-comment": ["error", "always"],
+    // 이것이 이면 true이 규칙은 유형 선언 전에 유형에 대한 모든 참조를 경고합니다. 이것이 이면 false이 규칙은 유형에 대한 참조를 무시합니다.
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error",{ "functions": true, "classes": true, "variables": false }],
+
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
